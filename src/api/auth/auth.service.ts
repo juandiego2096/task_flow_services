@@ -67,7 +67,6 @@ export class AuthService {
         secret: this.configService.get<string>('JWT_SECRET', ''),
         expires: this.configService.get<string>('JWT_EXPIRATION', '1h'),
       }),
-      user,
     };
   }
 

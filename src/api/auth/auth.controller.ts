@@ -6,16 +6,19 @@ import {
   Post,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { AuthResponse, loginDto } from './auth.type';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('auth')
+@ApiTags('Auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('login')
-  async login(@Body() { username, password }) {
+  async login(@Body() loginParams: loginDto): Promise<AuthResponse> {
     const userValidate = await this.authService.validateUser(
-      username,
-      password,
+      loginParams.username,
+      loginParams.password,
     );
 
     if (!userValidate) {

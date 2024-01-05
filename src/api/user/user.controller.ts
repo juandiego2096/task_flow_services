@@ -12,12 +12,19 @@ import {
 import { UserService } from './user.service';
 import { UserEntity } from 'src/entities/user.entity';
 import { createUserDto } from './user.type';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('users')
+@ApiTags('User')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post('createUser')
+  @ApiResponse({
+    status: 201,
+    description: 'The record has been successfully created.',
+    type: UserEntity,
+  })
   async createUser(
     @Body() newUser: createUserDto,
   ): Promise<UserEntity | HttpException> {
@@ -36,37 +43,55 @@ export class UserController {
   }
 
   @Get('getUsers')
+  @ApiResponse({
+    status: 200,
+    description: 'Successfully response',
+    type: UserEntity,
+  })
   async getUsers(): Promise<UserEntity[]> {
     return await this.userService.getUsers();
   }
 
   @Get('getUserById/:userId')
+  @ApiResponse({
+    status: 200,
+    description: 'Successfully response',
+    type: UserEntity,
+  })
   async getUserById(
     @Param('userId') userId: string,
-  ): Promise<UserEntity | HttpException | null> {
+  ): Promise<UserEntity | HttpException> {
     const userFound = await this.userService.getUserById(userId);
 
     if (!userFound) {
-      return new HttpException('User not found', HttpStatus.NOT_FOUND);
+      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
 
     return userFound;
   }
 
   @Get('self')
-  async getUserSelf(
-    @Request() req,
-  ): Promise<UserEntity | HttpException | null> {
+  @ApiResponse({
+    status: 200,
+    description: 'Successfully response',
+    type: UserEntity,
+  })
+  async getUserSelf(@Request() req): Promise<UserEntity | HttpException> {
     const userFound = await this.userService.getUserById(req.userId);
 
     if (!userFound) {
-      return new HttpException('User not found', HttpStatus.NOT_FOUND);
+      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
 
     return userFound;
   }
 
   @Patch('updateUser/:userId')
+  @ApiResponse({
+    status: 201,
+    description: 'The record has been successfully updated.',
+    type: UserEntity,
+  })
   async updateUser(
     @Request() req,
     @Param('userId') userId: string,

@@ -1,4 +1,4 @@
-import { UserDto } from '../user/user.type';
+import { ApiProperty } from '@nestjs/swagger';
 
 export interface PayloadToken {
   user: string;
@@ -12,7 +12,6 @@ export interface AuthBody {
 
 export interface AuthResponse {
   accessToken: string;
-  user: UserDto;
 }
 
 export interface AuthTokenResult {
@@ -26,4 +25,12 @@ export interface IUseToken {
   role: string;
   user: string;
   isExpired: boolean;
+}
+
+export class loginDto {
+  @ApiProperty()
+  username: string;
+
+  @ApiProperty()
+  password: string;
 }
