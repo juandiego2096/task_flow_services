@@ -1,7 +1,15 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { tableNames } from '../constants/table.names';
 import { RoleEntity } from './role.entity';
 import { ApiProperty } from '@nestjs/swagger';
+import { UserCategoryEntity } from './user_category.entity';
 
 @Entity({ name: tableNames.user })
 export class UserEntity {
@@ -41,4 +49,8 @@ export class UserEntity {
 
   @ManyToOne(() => RoleEntity, (role) => role.users)
   role: RoleEntity;
+
+  @ManyToMany(() => UserCategoryEntity, { cascade: true })
+  @JoinTable({ name: 'user_category_user' })
+  pictures: UserCategoryEntity[];
 }
