@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   JoinTable,
   ManyToMany,
   ManyToOne,
@@ -48,9 +49,10 @@ export class UserEntity {
   password: string;
 
   @ManyToOne(() => RoleEntity, (role) => role.users)
+  @JoinColumn({ name: 'id_role' })
   role: RoleEntity;
 
   @ManyToMany(() => UserCategoryEntity, { cascade: true })
   @JoinTable({ name: 'user_category_user' })
-  pictures: UserCategoryEntity[];
+  categories: UserCategoryEntity[];
 }

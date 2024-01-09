@@ -16,6 +16,6 @@ export default function ofConfig(
     migrations: [join(__dirname, '../../', '**', 'migrations/**/*.ts')],
     retryAttempts: 20,
     synchronize: true,
-    ssl: true,
+    ssl: configService.get<boolean>('POSTGRES_SSL', false) === true,
   };
 }
