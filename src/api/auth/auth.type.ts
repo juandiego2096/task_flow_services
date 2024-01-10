@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export interface PayloadToken {
-  user: string;
-  role: string;
+  user: number;
+  role: number;
 }
 
 export interface AuthBody {
@@ -15,15 +15,15 @@ export interface AuthResponse {
 }
 
 export interface AuthTokenResult {
-  role: string;
-  user: string;
+  role: number;
+  user: number;
   iat: number;
   exp: number;
 }
 
 export interface IUseToken {
-  role: string;
-  user: string;
+  role: number;
+  user: number;
   isExpired: boolean;
 }
 

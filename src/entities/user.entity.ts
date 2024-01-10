@@ -15,8 +15,8 @@ import { UserCategoryEntity } from './user_category.entity';
 @Entity({ name: tableNames.user })
 export class UserEntity {
   constructor(
-    id: string,
-    id_role: string,
+    id: number,
+    id_role: number,
     name: string,
     username: string,
     password: string,
@@ -30,11 +30,11 @@ export class UserEntity {
 
   @PrimaryGeneratedColumn()
   @ApiProperty()
-  id: string;
+  id: number;
 
   @Column({ nullable: false })
   @ApiProperty()
-  id_role: string;
+  id_role: number;
 
   @Column({ nullable: false })
   @ApiProperty()
@@ -50,6 +50,7 @@ export class UserEntity {
 
   @ManyToOne(() => RoleEntity, (role) => role.users)
   @JoinColumn({ name: 'id_role' })
+  @ApiProperty()
   role: RoleEntity;
 
   @ManyToMany(() => UserCategoryEntity, { cascade: true })

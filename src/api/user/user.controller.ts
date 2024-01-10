@@ -62,7 +62,7 @@ export class UserController {
     type: UserEntity,
   })
   async getUserById(
-    @Param('userId') userId: string,
+    @Param('userId') userId: number,
   ): Promise<UserEntity | HttpException> {
     const userFound = await this.userService.getUserById(userId);
 
@@ -97,7 +97,7 @@ export class UserController {
   })
   async updateUser(
     @Request() req,
-    @Param('userId') userId: string,
+    @Param('userId') userId: number,
     @Body() updateUser: createUserDto,
   ) {
     /*     if (req.userRole !== (ROLES.SUPER_ADMIN && ROLES.ADMIN)) {
