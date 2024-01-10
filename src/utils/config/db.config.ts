@@ -15,7 +15,7 @@ export default function ofConfig(
     entities: [join(__dirname, '../../', '**', '*.entity.{ts,js}')],
     migrations: [join(__dirname, '../../', '**', 'migrations/**/*.ts')],
     retryAttempts: 20,
-    synchronize: true,
+    synchronize: false,
     ssl: configService.get<boolean>('POSTGRES_SSL', false) === true,
   };
 }

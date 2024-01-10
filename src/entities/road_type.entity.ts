@@ -2,12 +2,11 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { tableNames } from '../constants/table.names';
 import { ApiProperty } from '@nestjs/swagger';
 
-@Entity({ name: tableNames.role })
-export class RoleEntity {
-  constructor(id: number, name: string, description: string) {
+@Entity({ name: tableNames.road_type })
+export class RoadTypeEntity {
+  constructor(id: number, name: string) {
     this.id = id;
     this.name = name;
-    this.description = description;
   }
 
   @PrimaryGeneratedColumn()
@@ -17,8 +16,4 @@ export class RoleEntity {
   @Column({ nullable: false })
   @ApiProperty()
   name: string;
-
-  @Column({ nullable: true })
-  @ApiProperty()
-  description: string;
 }

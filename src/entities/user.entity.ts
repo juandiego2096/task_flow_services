@@ -48,7 +48,7 @@ export class UserEntity {
   @ApiProperty()
   password: string;
 
-  @ManyToOne(() => RoleEntity, (role) => role.users)
+  @ManyToOne(() => RoleEntity)
   @JoinColumn({ name: 'id_role' })
   @ApiProperty()
   role: RoleEntity;

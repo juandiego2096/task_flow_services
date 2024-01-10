@@ -125,9 +125,9 @@ CREATE TABLE IF NOT EXISTS public."user"
 (
     id serial NOT NULL,
     id_role integer NOT NULL,
-    name character varying NOT NULL,
-    username character varying NOT NULL,
-    password character varying NOT NULL,
+    name character(250) NOT NULL,
+    username character(250) NOT NULL,
+    password character(250) NOT NULL,
     CONSTRAINT user_pkey PRIMARY KEY (id),
     CONSTRAINT "UQ_78a916df40e02a9deb1c4b75edb" UNIQUE (username),
     CONSTRAINT "FK_c28e52f758e7bbc53828db92194" FOREIGN KEY ("id_role")
@@ -142,8 +142,8 @@ ALTER TABLE IF EXISTS public."user"
 CREATE TABLE IF NOT EXISTS public.user_category
 (
     id serial NOT NULL,
-    description character varying,
-    name character varying NOT NULL,
+    name character(150) NOT NULL,
+    description character(500),
     CONSTRAINT user_category_pkey PRIMARY KEY (id)
 );
 

@@ -9,7 +9,7 @@ export const datasource = new DataSource({
   database: process.env.POSTGRES_DB || 'task_flow',
   entities: ['src/**/*.entity{.js}'],
   migrations: ['src/migrations/**/*.ts'],
-  synchronize: true,
+  synchronize: false,
   migrationsRun: true,
-  ssl: true,
+  ssl: Boolean(process.env.POSTGRES_SSL) === true || false,
 });

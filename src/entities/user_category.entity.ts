@@ -4,14 +4,14 @@ import { ApiProperty } from '@nestjs/swagger';
 
 @Entity({ name: tableNames.user_category })
 export class UserCategoryEntity {
-  constructor(id: string, name: string) {
+  constructor(id: number, name: string) {
     this.id = id;
     this.name = name;
   }
 
   @PrimaryGeneratedColumn()
   @ApiProperty()
-  id: string;
+  id: number;
 
   @Column({ nullable: false })
   @ApiProperty()
