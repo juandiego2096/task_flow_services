@@ -20,8 +20,8 @@ GRANT EXECUTE ON FUNCTIONS TO admin;
 CREATE TABLE IF NOT EXISTS public.role
 (
     id serial NOT NULL,
-    name character(150) NOT NULL,
-    description character(250),
+    name character varying NOT NULL,
+    description character varying,
     PRIMARY KEY (id)
 );
 
@@ -31,9 +31,9 @@ ALTER TABLE IF EXISTS public.role
 CREATE TABLE IF NOT EXISTS public.file
 (
     id serial NOT NULL,
-    name character(250) NOT NULL,
-    path character(250) NOT NULL,
-    type character(25),
+    name character varying NOT NULL,
+    path character varying NOT NULL,
+    type character varying,
     CONSTRAINT file_pkey PRIMARY KEY (id)
 );
 
@@ -43,7 +43,7 @@ ALTER TABLE IF EXISTS public.file
 CREATE TABLE IF NOT EXISTS public.road_type
 (
     id serial NOT NULL,
-    name character(50) NOT NULL,
+    name character varying NOT NULL,
     CONSTRAINT road_type_pkey PRIMARY KEY (id)
 );
 
@@ -53,9 +53,9 @@ ALTER TABLE IF EXISTS public.road_type
 CREATE TABLE IF NOT EXISTS public.person_contact
 (
     id serial NOT NULL,
-    name character(150) NOT NULL,
-    phone character(25) NOT NULL,
-    observations character(250),
+    name character varying NOT NULL,
+    phone character varying NOT NULL,
+    observations character varying,
     CONSTRAINT person_contact_pkey PRIMARY KEY (id)
 );
 
@@ -66,12 +66,12 @@ CREATE TABLE IF NOT EXISTS public.address
 (
     id serial NOT NULL,
     id_road_type integer NOT NULL,
-    name character(150) NOT NULL,
-    complementary character(150),
+    name character varying NOT NULL,
+    complementary character varying,
     "number" integer,
-    postal_code character(10),
-    province character(150),
-    location character(150),
+    postal_code character varying,
+    province character varying,
+    location character varying,
     CONSTRAINT address_pkey PRIMARY KEY (id),
     CONSTRAINT address_id_road_type_fkey FOREIGN KEY (id_road_type)
         REFERENCES public.road_type (id) MATCH SIMPLE
@@ -86,10 +86,10 @@ ALTER TABLE IF EXISTS public.address
 CREATE TABLE IF NOT EXISTS public.agent
 (
     id serial NOT NULL,
-    name character(150) NOT NULL,
-    cif character(20),
-    phone character(20),
-    email character(50),
+    name character varying NOT NULL,
+    cif character varying,
+    phone character varying,
+    email character varying,
     id_address integer,
     CONSTRAINT agent_pkey PRIMARY KEY (id),
     CONSTRAINT agent_id_address_fkey FOREIGN KEY (id_address)
@@ -125,9 +125,9 @@ CREATE TABLE IF NOT EXISTS public."user"
 (
     id serial NOT NULL,
     id_role integer NOT NULL,
-    name character(250) NOT NULL,
-    username character(250) NOT NULL,
-    password character(250) NOT NULL,
+    name character varying NOT NULL,
+    username character varying NOT NULL,
+    password character varying NOT NULL,
     CONSTRAINT user_pkey PRIMARY KEY (id),
     CONSTRAINT "UQ_78a916df40e02a9deb1c4b75edb" UNIQUE (username),
     CONSTRAINT "FK_c28e52f758e7bbc53828db92194" FOREIGN KEY ("id_role")
@@ -142,12 +142,12 @@ ALTER TABLE IF EXISTS public."user"
 CREATE TABLE IF NOT EXISTS public.user_category
 (
     id serial NOT NULL,
-    name character(150) NOT NULL,
-    description character(500),
+    name character varying NOT NULL,
+    description character varying,
     CONSTRAINT user_category_pkey PRIMARY KEY (id)
 );
 
-ALTER TABLE IF EXISTS public.user_company
+ALTER TABLE IF EXISTS public.user_category
     OWNER to admin;
 
 CREATE TABLE IF NOT EXISTS public.user_category_user
@@ -171,14 +171,14 @@ ALTER TABLE IF EXISTS public.user_category_user
 CREATE TABLE IF NOT EXISTS public.client
 (
     id serial NOT NULL,
-    "number" character(20) NOT NULL,
-    name character(150),
-    cif character(20),
-    phone character(20),
-    email character(50),
+    "number" character varying NOT NULL,
+    name character varying,
+    cif character varying,
+    phone character varying,
+    email character varying,
     id_address integer NOT NULL,
     id_agent integer,
-    observations character(250),
+    observations character varying,
     CONSTRAINT client_pkey PRIMARY KEY (id),
     CONSTRAINT client_id_address_fkey FOREIGN KEY (id_address)
         REFERENCES public.address (id) MATCH SIMPLE
@@ -221,7 +221,7 @@ CREATE TABLE IF NOT EXISTS public.notice
     notice_date date NOT NULL,
     expected_date date,
     id_address integer,
-    description character(500),
+    description character varying,
     creation_date timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
     creation_user_id integer NOT NULL,
     CONSTRAINT notice_pkey PRIMARY KEY (id),
@@ -270,7 +270,7 @@ CREATE TABLE IF NOT EXISTS public.budget
     notice_date date,
     expected_date date,
     id_address integer,
-    description character(500),
+    description character varying,
     creation_date timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
     creation_user_id integer,
     amount numeric,
@@ -326,7 +326,7 @@ ALTER TABLE IF EXISTS public.budget_file
 CREATE TABLE IF NOT EXISTS public.service_status
 (
     id serial NOT NULL,
-    name character(150) NOT NULL,
+    name character varying NOT NULL,
     CONSTRAINT service_status_pkey PRIMARY KEY (id)
 );
 
@@ -336,7 +336,7 @@ ALTER TABLE IF EXISTS public.service_status
 CREATE TABLE IF NOT EXISTS public.service_priority
 (
     id serial NOT NULL,
-    name character(150) NOT NULL,
+    name character varying NOT NULL,
     CONSTRAINT service_priority_pkey PRIMARY KEY (id)
 );
 
@@ -346,8 +346,8 @@ ALTER TABLE IF EXISTS public.service_priority
 CREATE TABLE IF NOT EXISTS public.service
 (
     id serial NOT NULL,
-    title character(250) NOT NULL,
-    description character(500),
+    title character varying NOT NULL,
+    description character varying,
     id_client integer NOT NULL,
     id_agent integer,
     id_priority integer,
