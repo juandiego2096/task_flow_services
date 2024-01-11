@@ -3,6 +3,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ServiceModule } from './service/service.module';
+import { BudgetModule } from './budget/budget.module';
+import { NoticeModule } from './notice/notice.module';
+import { ServiceStatusModule } from './service_status/service_status.module';
+import { ServicePriorityModule } from './service_priority/service_priority.module';
+import { RoadTypeModule } from './road_type/road_type.module';
 import ofDbOptions from '../utils/config/db.config';
 
 @Module({
@@ -17,6 +23,12 @@ import ofDbOptions from '../utils/config/db.config';
     }),
     AuthModule,
     UserModule,
+    ServiceModule,
+    BudgetModule,
+    NoticeModule,
+    ServiceStatusModule,
+    ServicePriorityModule,
+    RoadTypeModule,
   ],
 })
 export class ApiModule {}
