@@ -42,7 +42,6 @@ export class ServiceService {
         'address',
         'creation_user',
         'budget',
-        'files',
       ],
       where: { id: serviceId },
     });
@@ -57,7 +56,6 @@ export class ServiceService {
         'address',
         'creation_user',
         'budget',
-        'files',
       ],
       where: { id_budget: budgetId },
     });
