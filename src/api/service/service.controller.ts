@@ -28,7 +28,7 @@ export class ServiceController {
     description: 'The record has been successfully created.',
     type: ServiceEntity,
   })
-  async createUser(
+  async createService(
     @Body() newService: createServiceDto,
   ): Promise<ServiceEntity | HttpException> {
     const serviceFoundBybudgetId =
@@ -50,7 +50,7 @@ export class ServiceController {
     description: 'Successfully response',
     type: ServiceEntity,
   })
-  async getUsers(): Promise<ServiceEntity[]> {
+  async getServices(): Promise<ServiceEntity[]> {
     return await this.serviceService.getServices();
   }
 
@@ -60,16 +60,16 @@ export class ServiceController {
     description: 'Successfully response',
     type: ServiceEntity,
   })
-  async getUserById(
+  async getServiceById(
     @Param('serviceId') serviceId: number,
   ): Promise<ServiceEntity | HttpException> {
-    const userFound = await this.serviceService.getServiceById(serviceId);
+    const serviceFound = await this.serviceService.getServiceById(serviceId);
 
-    if (!userFound) {
+    if (!serviceFound) {
       throw new HttpException('Service not found', HttpStatus.NOT_FOUND);
     }
 
-    return userFound;
+    return serviceFound;
   }
 
   @Patch('updateService/:serviceId')
@@ -78,7 +78,7 @@ export class ServiceController {
     description: 'The record has been successfully updated.',
     type: ServiceEntity,
   })
-  async updateUser(
+  async updateService(
     @Request() req,
     @Param('serviceId') serviceId: number,
     @Body() updateService: updateServiceDto,
