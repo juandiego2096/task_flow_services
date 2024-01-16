@@ -28,7 +28,7 @@ export class NoticeController {
     description: 'The record has been successfully created.',
     type: NoticeEntity,
   })
-  async createUser(
+  async createNotice(
     @Body() newService: createNoticeDto,
   ): Promise<NoticeEntity | HttpException> {
     return await this.noticeService.createNotice(newService);
@@ -60,6 +60,18 @@ export class NoticeController {
     }
 
     return noticeFound;
+  }
+
+  @Get('getNoticesByClientId/:clientId')
+  @ApiResponse({
+    status: 200,
+    description: 'Successfully response',
+    type: NoticeEntity,
+  })
+  async getNoticesByClientId(
+    @Param('clientId') clientId: number,
+  ): Promise<NoticeEntity[]> {
+    return await this.noticeService.getNoticeByClientId(clientId);
   }
 
   @Patch('updateNotice/:noticeId')

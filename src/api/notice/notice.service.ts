@@ -35,8 +35,8 @@ export class NoticeService {
     });
   }
 
-  async getNoticeByClientId(clientId: number): Promise<NoticeEntity | null> {
-    return await this.noticeRepository.findOne({
+  async getNoticeByClientId(clientId: number): Promise<NoticeEntity[]> {
+    return await this.noticeRepository.find({
       where: { id_client: clientId },
     });
   }
