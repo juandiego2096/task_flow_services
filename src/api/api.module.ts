@@ -14,6 +14,7 @@ import { AgentModule } from './agent/agent.module';
 import { AddressModule } from './address/address.module';
 import { PersonContactModule } from './person_contact/person_contact.module';
 import { RoleModule } from './role/role.module';
+import { UserCategoryModule } from './user_category/user_category.module';
 import ofDbOptions from '../utils/config/db.config';
 
 @Module({
@@ -39,6 +40,7 @@ import ofDbOptions from '../utils/config/db.config';
     AddressModule,
     PersonContactModule,
     RoleModule,
+    UserCategoryModule,
   ],
 })
 export class ApiModule {}
