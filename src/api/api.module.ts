@@ -13,6 +13,7 @@ import { ClientModule } from './client/client.module';
 import { AgentModule } from './agent/agent.module';
 import { AddressModule } from './address/address.module';
 import { PersonContactModule } from './person_contact/person_contact.module';
+import { RoleModule } from './role/role.module';
 import ofDbOptions from '../utils/config/db.config';
 
 @Module({
@@ -37,6 +38,7 @@ import ofDbOptions from '../utils/config/db.config';
     AgentModule,
     AddressModule,
     PersonContactModule,
+    RoleModule,
   ],
 })
 export class ApiModule {}
