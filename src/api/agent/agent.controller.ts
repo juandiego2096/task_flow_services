@@ -83,7 +83,7 @@ export class AgentController {
     const agent = await this.agentService.getAgentById(agentId);
     if (!agent) {
       throw new HttpException(
-        `Budget with id  ${agentId} not found`,
+        `Agent with id  ${agentId} not found`,
         HttpStatus.NOT_FOUND,
       );
     }

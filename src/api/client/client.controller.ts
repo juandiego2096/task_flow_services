@@ -95,7 +95,7 @@ export class ClientController {
     const client = await this.clientService.getClientById(clientId);
     if (!client) {
       throw new HttpException(
-        `Budget with id  ${clientId} not found`,
+        `Client with id  ${clientId} not found`,
         HttpStatus.NOT_FOUND,
       );
     }

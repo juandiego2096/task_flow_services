@@ -80,7 +80,7 @@ export class RoadTypeController {
     description: 'The record has been successfully updated.',
     type: RoadTypeEntity,
   })
-  async updateServicePriority(
+  async updateRoadType(
     @Request() req,
     @Param('roadTypeId') roadTypeId: number,
     @Body() updateRoadType: createRoadTypeDto,

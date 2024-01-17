@@ -64,7 +64,7 @@ export class ServiceStatusController {
     description: 'Successfully response',
     type: ServiceStatusEntity,
   })
-  async getUserById(
+  async getServiceStatusById(
     @Param('serviceStatusId') serviceStatusId: number,
   ): Promise<ServiceStatusEntity | HttpException> {
     const serviceStatusFound =
