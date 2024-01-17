@@ -12,6 +12,7 @@ import { RoadTypeModule } from './road_type/road_type.module';
 import { ClientModule } from './client/client.module';
 import { AgentModule } from './agent/agent.module';
 import { AddressModule } from './address/address.module';
+import { PersonContactModule } from './person_contact/person_contact.module';
 import ofDbOptions from '../utils/config/db.config';
 
 @Module({
@@ -35,6 +36,7 @@ import ofDbOptions from '../utils/config/db.config';
     ClientModule,
     AgentModule,
     AddressModule,
+    PersonContactModule,
   ],
 })
 export class ApiModule {}
