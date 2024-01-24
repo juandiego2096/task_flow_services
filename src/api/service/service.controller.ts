@@ -1,15 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  HttpException,
-  HttpStatus,
-  Param,
-  Patch,
-  Post,
-  Request,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Post, Request, UseGuards } from '@nestjs/common';
 import { ServiceService } from './service.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -28,17 +17,11 @@ export class ServiceController {
     description: 'The record has been successfully created.',
     type: ServiceEntity,
   })
-  async createService(
-    @Body() newService: createServiceDto,
-  ): Promise<ServiceEntity | HttpException> {
-    const serviceFoundBybudgetId =
-      await this.serviceService.getServiceByBudgetId(newService.id_budget);
+  async createService(@Body() newService: createServiceDto): Promise<ServiceEntity | HttpException> {
+    const serviceFoundBybudgetId = await this.serviceService.getServiceByBudgetId(newService.id_budget);
 
     if (serviceFoundBybudgetId) {
-      throw new HttpException(
-        `Already exists a service created from the budget with id ${newService.id_budget}`,
-        HttpStatus.FOUND,
-      );
+      throw new HttpException(`Already exists a service created from the budget with id ${newService.id_budget}`, HttpStatus.FOUND);
     }
 
     return await this.serviceService.createService(newService);
@@ -60,9 +43,7 @@ export class ServiceController {
     description: 'Successfully response',
     type: ServiceEntity,
   })
-  async getServiceById(
-    @Param('serviceId') serviceId: number,
-  ): Promise<ServiceEntity | HttpException> {
+  async getServiceById(@Param('serviceId') serviceId: number): Promise<ServiceEntity | HttpException> {
     const serviceFound = await this.serviceService.getServiceById(serviceId);
 
     if (!serviceFound) {
@@ -78,11 +59,7 @@ export class ServiceController {
     description: 'The record has been successfully updated.',
     type: ServiceEntity,
   })
-  async updateService(
-    @Request() req,
-    @Param('serviceId') serviceId: number,
-    @Body() updateService: updateServiceDto,
-  ) {
+  async updateService(@Request() req, @Param('serviceId') serviceId: number, @Body() updateService: updateServiceDto) {
     /*     if (req.userRole !== (ROLES.SUPER_ADMIN && ROLES.ADMIN)) {
       throw new HttpException(
         'User not enabled to create a specie',
@@ -92,10 +69,7 @@ export class ServiceController {
 
     const service = await this.serviceService.getServiceById(serviceId);
     if (!service) {
-      throw new HttpException(
-        `Service with id  ${serviceId} not found`,
-        HttpStatus.NOT_FOUND,
-      );
+      throw new HttpException(`Service with id  ${serviceId} not found`, HttpStatus.NOT_FOUND);
     }
 
     service.title = updateService.title;

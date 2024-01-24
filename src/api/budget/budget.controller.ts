@@ -1,15 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  HttpException,
-  HttpStatus,
-  Param,
-  Patch,
-  Post,
-  Request,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Post, Request, UseGuards } from '@nestjs/common';
 import { BudgetService } from './budget.service';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '../auth/auth.guard';
@@ -28,9 +17,7 @@ export class BudgetController {
     description: 'The record has been successfully created.',
     type: BudgetEntity,
   })
-  async createBudget(
-    @Body() newBudget: createBudgetDto,
-  ): Promise<BudgetEntity | HttpException> {
+  async createBudget(@Body() newBudget: createBudgetDto): Promise<BudgetEntity | HttpException> {
     return await this.budgetService.createBudget(newBudget);
   }
 
@@ -50,9 +37,7 @@ export class BudgetController {
     description: 'Successfully response',
     type: BudgetEntity,
   })
-  async getBudgetById(
-    @Param('budgetId') budgetId: number,
-  ): Promise<BudgetEntity | HttpException> {
+  async getBudgetById(@Param('budgetId') budgetId: number): Promise<BudgetEntity | HttpException> {
     const budgetFound = await this.budgetService.getBudgetById(budgetId);
 
     if (!budgetFound) {
@@ -68,9 +53,7 @@ export class BudgetController {
     description: 'Successfully response',
     type: BudgetEntity,
   })
-  async getBudgetsByClientId(
-    @Param('clientId') clientId: number,
-  ): Promise<BudgetEntity[]> {
+  async getBudgetsByClientId(@Param('clientId') clientId: number): Promise<BudgetEntity[]> {
     return await this.budgetService.getBudgetsByClientId(clientId);
   }
 
@@ -80,9 +63,7 @@ export class BudgetController {
     description: 'Successfully response',
     type: BudgetEntity,
   })
-  async getBudgetsByAgentId(
-    @Param('agentId') agentId: number,
-  ): Promise<BudgetEntity[]> {
+  async getBudgetsByAgentId(@Param('agentId') agentId: number): Promise<BudgetEntity[]> {
     return await this.budgetService.getBudgetsByAgentId(agentId);
   }
 
@@ -92,9 +73,7 @@ export class BudgetController {
     description: 'Successfully response',
     type: BudgetEntity,
   })
-  async getBudgetByNoticeId(
-    @Param('noticeId') noticeId: number,
-  ): Promise<BudgetEntity | HttpException> {
+  async getBudgetByNoticeId(@Param('noticeId') noticeId: number): Promise<BudgetEntity | HttpException> {
     const budgetFound = await this.budgetService.getBudgetByNoticeId(noticeId);
 
     if (!budgetFound) {
@@ -110,11 +89,7 @@ export class BudgetController {
     description: 'The record has been successfully updated.',
     type: BudgetEntity,
   })
-  async updateBudget(
-    @Request() req,
-    @Param('budgetId') budgetId: number,
-    @Body() updateService: updateBudgetDto,
-  ) {
+  async updateBudget(@Request() req, @Param('budgetId') budgetId: number, @Body() updateService: updateBudgetDto) {
     /*     if (req.userRole !== (ROLES.SUPER_ADMIN && ROLES.ADMIN)) {
       throw new HttpException(
         'User not enabled to create a specie',
@@ -124,10 +99,7 @@ export class BudgetController {
 
     const budget = await this.budgetService.getBudgetById(budgetId);
     if (!budget) {
-      throw new HttpException(
-        `Budget with id  ${budgetId} not found`,
-        HttpStatus.NOT_FOUND,
-      );
+      throw new HttpException(`Budget with id  ${budgetId} not found`, HttpStatus.NOT_FOUND);
     }
 
     budget.id_client = updateService.id_client;

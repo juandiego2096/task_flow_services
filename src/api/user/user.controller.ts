@@ -1,15 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  HttpException,
-  HttpStatus,
-  Param,
-  Patch,
-  Post,
-  Request,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Post, Request, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserEntity } from 'src/entities/user.entity';
 import { createUserDto } from './user.type';
@@ -28,18 +17,11 @@ export class UserController {
     description: 'The record has been successfully created.',
     type: UserEntity,
   })
-  async createUser(
-    @Body() newUser: createUserDto,
-  ): Promise<UserEntity | HttpException> {
-    const userFoundByUsername = await this.userService.getUserByUsername(
-      newUser.username,
-    );
+  async createUser(@Body() newUser: createUserDto): Promise<UserEntity | HttpException> {
+    const userFoundByUsername = await this.userService.getUserByUsername(newUser.username);
 
     if (userFoundByUsername) {
-      throw new HttpException(
-        `User with username ${newUser.username} already exists`,
-        HttpStatus.FOUND,
-      );
+      throw new HttpException(`User with username ${newUser.username} already exists`, HttpStatus.FOUND);
     }
 
     return await this.userService.createUser(newUser);
@@ -61,9 +43,7 @@ export class UserController {
     description: 'Successfully response',
     type: UserEntity,
   })
-  async getUserById(
-    @Param('userId') userId: number,
-  ): Promise<UserEntity | HttpException> {
+  async getUserById(@Param('userId') userId: number): Promise<UserEntity | HttpException> {
     const userFound = await this.userService.getUserById(userId);
 
     if (!userFound) {
@@ -95,11 +75,7 @@ export class UserController {
     description: 'The record has been successfully updated.',
     type: UserEntity,
   })
-  async updateUser(
-    @Request() req,
-    @Param('userId') userId: number,
-    @Body() updateUser: createUserDto,
-  ) {
+  async updateUser(@Request() req, @Param('userId') userId: number, @Body() updateUser: createUserDto) {
     /*     if (req.userRole !== (ROLES.SUPER_ADMIN && ROLES.ADMIN)) {
       throw new HttpException(
         'User not enabled to create a specie',
@@ -109,10 +85,7 @@ export class UserController {
 
     const user = await this.userService.getUserById(userId);
     if (!user) {
-      throw new HttpException(
-        `User with id  ${userId} not found`,
-        HttpStatus.NOT_FOUND,
-      );
+      throw new HttpException(`User with id  ${userId} not found`, HttpStatus.NOT_FOUND);
     }
 
     user.id_role = updateUser.id_role;

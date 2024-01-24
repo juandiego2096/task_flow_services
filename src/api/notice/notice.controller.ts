@@ -1,15 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  HttpException,
-  HttpStatus,
-  Param,
-  Patch,
-  Post,
-  Request,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Post, Request, UseGuards } from '@nestjs/common';
 import { NoticeService } from './notice.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -28,9 +17,7 @@ export class NoticeController {
     description: 'The record has been successfully created.',
     type: NoticeEntity,
   })
-  async createNotice(
-    @Body() newService: createNoticeDto,
-  ): Promise<NoticeEntity | HttpException> {
+  async createNotice(@Body() newService: createNoticeDto): Promise<NoticeEntity | HttpException> {
     return await this.noticeService.createNotice(newService);
   }
 
@@ -50,9 +37,7 @@ export class NoticeController {
     description: 'Successfully response',
     type: NoticeEntity,
   })
-  async getNoticeById(
-    @Param('noticeId') noticeId: number,
-  ): Promise<NoticeEntity | HttpException> {
+  async getNoticeById(@Param('noticeId') noticeId: number): Promise<NoticeEntity | HttpException> {
     const noticeFound = await this.noticeService.getNoticeById(noticeId);
 
     if (!noticeFound) {
@@ -68,9 +53,7 @@ export class NoticeController {
     description: 'Successfully response',
     type: NoticeEntity,
   })
-  async getNoticesByClientId(
-    @Param('clientId') clientId: number,
-  ): Promise<NoticeEntity[]> {
+  async getNoticesByClientId(@Param('clientId') clientId: number): Promise<NoticeEntity[]> {
     return await this.noticeService.getNoticeByClientId(clientId);
   }
 
@@ -80,11 +63,7 @@ export class NoticeController {
     description: 'The record has been successfully updated.',
     type: NoticeEntity,
   })
-  async updateNotice(
-    @Request() req,
-    @Param('noticeId') noticeId: number,
-    @Body() updateService: updateNoticeDto,
-  ) {
+  async updateNotice(@Request() req, @Param('noticeId') noticeId: number, @Body() updateService: updateNoticeDto) {
     /*     if (req.userRole !== (ROLES.SUPER_ADMIN && ROLES.ADMIN)) {
       throw new HttpException(
         'User not enabled to create a specie',
@@ -94,10 +73,7 @@ export class NoticeController {
 
     const notice = await this.noticeService.getNoticeById(noticeId);
     if (!notice) {
-      throw new HttpException(
-        `Notice with id  ${noticeId} not found`,
-        HttpStatus.NOT_FOUND,
-      );
+      throw new HttpException(`Notice with id  ${noticeId} not found`, HttpStatus.NOT_FOUND);
     }
 
     notice.id_client = updateService.id_client;

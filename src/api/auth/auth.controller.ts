@@ -1,10 +1,4 @@
-import {
-  Body,
-  Controller,
-  HttpException,
-  HttpStatus,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, HttpException, HttpStatus, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthResponse, loginDto } from './auth.type';
 import { ApiTags } from '@nestjs/swagger';
@@ -16,10 +10,7 @@ export class AuthController {
 
   @Post('login')
   async login(@Body() loginParams: loginDto): Promise<AuthResponse> {
-    const userValidate = await this.authService.validateUser(
-      loginParams.username,
-      loginParams.password,
-    );
+    const userValidate = await this.authService.validateUser(loginParams.username, loginParams.password);
 
     if (!userValidate) {
       throw new HttpException('Data not valid', HttpStatus.BAD_REQUEST);

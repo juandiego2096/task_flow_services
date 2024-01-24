@@ -1,12 +1,4 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  JoinTable,
-  ManyToMany,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { tableNames } from '../constants/table.names';
 import { ApiProperty } from '@nestjs/swagger';
 import { AddressEntity } from './address.entity';
@@ -14,14 +6,7 @@ import { PersonContactEntity } from './person_contact.entity';
 
 @Entity({ name: tableNames.agent })
 export class AgentEntity {
-  constructor(
-    id: number,
-    name: string,
-    cif: string,
-    phone: string,
-    email: string,
-    id_address: number,
-  ) {
+  constructor(id: number, name: string, cif: string, phone: string, email: string, id_address: number) {
     this.id = id;
     this.name = name;
     this.cif = cif;

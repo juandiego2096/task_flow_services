@@ -1,26 +1,11 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { tableNames } from '../constants/table.names';
 import { ApiProperty } from '@nestjs/swagger';
 import { RoadTypeEntity } from './road_type.entity';
 
 @Entity({ name: tableNames.address })
 export class AddressEntity {
-  constructor(
-    id: number,
-    id_road_type: number,
-    name: string,
-    complementary: string,
-    number: number,
-    postal_code: string,
-    province: string,
-    location: string,
-  ) {
+  constructor(id: number, id_road_type: number, name: string, complementary: string, number: number, postal_code: string, province: string, location: string) {
     this.id = id;
     this.id_road_type = id_road_type;
     this.name = name;

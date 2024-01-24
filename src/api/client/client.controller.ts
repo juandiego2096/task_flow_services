@@ -1,15 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  HttpException,
-  HttpStatus,
-  Param,
-  Patch,
-  Post,
-  Request,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Post, Request, UseGuards } from '@nestjs/common';
 import { ClientService } from './client.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -28,9 +17,7 @@ export class ClientController {
     description: 'The record has been successfully created.',
     type: ClientEntity,
   })
-  async createClient(
-    @Body() newClient: createClientDto,
-  ): Promise<ClientEntity | HttpException> {
+  async createClient(@Body() newClient: createClientDto): Promise<ClientEntity | HttpException> {
     return await this.clientService.createClient(newClient);
   }
 
@@ -50,9 +37,7 @@ export class ClientController {
     description: 'Successfully response',
     type: ClientEntity,
   })
-  async getClientById(
-    @Param('clientId') clientId: number,
-  ): Promise<ClientEntity | HttpException> {
+  async getClientById(@Param('clientId') clientId: number): Promise<ClientEntity | HttpException> {
     const clientFound = await this.clientService.getClientById(clientId);
 
     if (!clientFound) {
@@ -68,9 +53,7 @@ export class ClientController {
     description: 'Successfully response',
     type: ClientEntity,
   })
-  async getClientsByAgentId(
-    @Param('agentId') agentId: number,
-  ): Promise<ClientEntity[]> {
+  async getClientsByAgentId(@Param('agentId') agentId: number): Promise<ClientEntity[]> {
     return await this.clientService.getClientsByAgentId(agentId);
   }
 
@@ -80,11 +63,7 @@ export class ClientController {
     description: 'The record has been successfully updated.',
     type: ClientEntity,
   })
-  async updateClient(
-    @Request() req,
-    @Param('clientId') clientId: number,
-    @Body() updateClient: createClientDto,
-  ) {
+  async updateClient(@Request() req, @Param('clientId') clientId: number, @Body() updateClient: createClientDto) {
     /*     if (req.userRole !== (ROLES.SUPER_ADMIN && ROLES.ADMIN)) {
       throw new HttpException(
         'User not enabled to create a specie',
@@ -94,10 +73,7 @@ export class ClientController {
 
     const client = await this.clientService.getClientById(clientId);
     if (!client) {
-      throw new HttpException(
-        `Client with id  ${clientId} not found`,
-        HttpStatus.NOT_FOUND,
-      );
+      throw new HttpException(`Client with id  ${clientId} not found`, HttpStatus.NOT_FOUND);
     }
 
     client.number = updateClient.number;

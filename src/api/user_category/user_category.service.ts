@@ -13,9 +13,7 @@ export class UserCategoryService {
     private readonly configService: ConfigService,
   ) {}
 
-  async createUserCategory(
-    userCategory: createUserCategoryDto,
-  ): Promise<UserCategoryEntity> {
+  async createUserCategory(userCategory: createUserCategoryDto): Promise<UserCategoryEntity> {
     return this.userCategoryRepository.save({
       name: userCategory.name,
       description: userCategory.description,
@@ -26,17 +24,13 @@ export class UserCategoryService {
     return this.userCategoryRepository.find();
   }
 
-  async getUserCategoryById(
-    userCategoryId: number,
-  ): Promise<UserCategoryEntity | null> {
+  async getUserCategoryById(userCategoryId: number): Promise<UserCategoryEntity | null> {
     return await this.userCategoryRepository.findOne({
       where: { id: userCategoryId },
     });
   }
 
-  async getUserCategoryByName(
-    userCategoryName: string,
-  ): Promise<UserCategoryEntity | null> {
+  async getUserCategoryByName(userCategoryName: string): Promise<UserCategoryEntity | null> {
     return await this.userCategoryRepository.findOne({
       where: { name: userCategoryName },
     });

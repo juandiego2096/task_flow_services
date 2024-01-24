@@ -1,12 +1,4 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  JoinTable,
-  ManyToMany,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { tableNames } from '../constants/table.names';
 import { RoleEntity } from './role.entity';
 import { ApiProperty } from '@nestjs/swagger';
@@ -14,13 +6,7 @@ import { UserCategoryEntity } from './user_category.entity';
 
 @Entity({ name: tableNames.user })
 export class UserEntity {
-  constructor(
-    id: number,
-    id_role: number,
-    name: string,
-    username: string,
-    password: string,
-  ) {
+  constructor(id: number, id_role: number, name: string, username: string, password: string) {
     this.id = id;
     this.id_role = id_role;
     this.name = name;
