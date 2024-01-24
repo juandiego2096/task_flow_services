@@ -14,7 +14,10 @@ export class createServiceDto {
   id_agent: number;
 
   @ApiProperty()
-  id_priority: number;
+  priority: number;
+
+  @ApiProperty()
+  status: number;
 
   @ApiProperty()
   notice_date: Date;
@@ -49,7 +52,10 @@ export class updateServiceDto {
   id_agent: number;
 
   @ApiProperty()
-  id_priority: number;
+  priority: number;
+
+  @ApiProperty()
+  status: number;
 
   @ApiProperty()
   notice_date: Date;

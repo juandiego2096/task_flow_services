@@ -323,26 +323,6 @@ CREATE TABLE IF NOT EXISTS public.budget_file
 ALTER TABLE IF EXISTS public.budget_file
     OWNER to admin;
 
-CREATE TABLE IF NOT EXISTS public.service_status
-(
-    id serial NOT NULL,
-    name character varying NOT NULL,
-    CONSTRAINT service_status_pkey PRIMARY KEY (id)
-);
-
-ALTER TABLE IF EXISTS public.service_status
-    OWNER to admin;
-
-CREATE TABLE IF NOT EXISTS public.service_priority
-(
-    id serial NOT NULL,
-    name character varying NOT NULL,
-    CONSTRAINT service_priority_pkey PRIMARY KEY (id)
-);
-
-ALTER TABLE IF EXISTS public.service_priority
-    OWNER to admin;
-
 CREATE TABLE IF NOT EXISTS public.service
 (
     id serial NOT NULL,
@@ -350,7 +330,8 @@ CREATE TABLE IF NOT EXISTS public.service
     description character varying,
     id_client integer NOT NULL,
     id_agent integer,
-    id_priority integer,
+    priority integer,
+    status integer,
     notice_date date,
     expected_date date,
     finish_date date,
@@ -384,11 +365,6 @@ CREATE TABLE IF NOT EXISTS public.service
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
         NOT VALID,
-    CONSTRAINT service_id_priority_fkey FOREIGN KEY (id_priority)
-        REFERENCES public.service_priority (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-        NOT VALID
 );
 
 ALTER TABLE IF EXISTS public.service

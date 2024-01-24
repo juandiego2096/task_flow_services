@@ -14,7 +14,6 @@ import { UserEntity } from './user.entity';
 import { ClientEntity } from './client.entity';
 import { FileEntity } from './file.entity';
 import { AgentEntity } from './agent.entity';
-import { ServicePriorityEntity } from './service_priority.entity';
 import { BudgetEntity } from './budget.entity';
 
 @Entity({ name: tableNames.service })
@@ -25,7 +24,8 @@ export class ServiceEntity {
     description: string,
     id_client: number,
     id_agent: number,
-    id_priority: number,
+    priority: number,
+    status: number,
     notice_date: Date,
     expected_date: Date,
     finish_date: Date,
@@ -39,7 +39,8 @@ export class ServiceEntity {
     this.description = description;
     this.id_client = id_client;
     this.id_agent = id_agent;
-    this.id_priority = id_priority;
+    this.priority = priority;
+    this.status = status;
     this.notice_date = notice_date;
     this.expected_date = expected_date;
     this.finish_date = finish_date;
@@ -71,7 +72,11 @@ export class ServiceEntity {
 
   @Column({ nullable: true })
   @ApiProperty()
-  id_priority: number;
+  priority: number;
+
+  @Column({ nullable: true })
+  @ApiProperty()
+  status: number;
 
   @Column({ nullable: false })
   @ApiProperty()
@@ -110,11 +115,6 @@ export class ServiceEntity {
   @JoinColumn({ name: 'id_agent' })
   @ApiProperty()
   agent: AgentEntity;
-
-  @ManyToOne(() => ServicePriorityEntity)
-  @JoinColumn({ name: 'id_priority' })
-  @ApiProperty()
-  priority: ServicePriorityEntity;
 
   @ManyToOne(() => AddressEntity)
   @JoinColumn({ name: 'id_address' })

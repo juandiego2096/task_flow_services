@@ -102,7 +102,8 @@ export class ServiceController {
     service.description = updateService.description;
     service.id_client = updateService.id_client;
     service.id_agent = updateService.id_agent;
-    service.id_priority = updateService.id_priority;
+    service.priority = updateService.priority;
+    service.status = updateService.status;
     service.notice_date = updateService.notice_date;
     service.expected_date = updateService.expected_date;
     service.finish_date = updateService.finish_date;
