@@ -36,28 +36,14 @@ export class ServiceService {
 
   async getServiceById(serviceId: number): Promise<ServiceEntity | null> {
     return await this.serviceRepository.findOne({
-      relations: [
-        'client',
-        'agent',
-        'priority',
-        'address',
-        'creation_user',
-        'budget',
-      ],
+      relations: ['client', 'agent', 'address', 'creation_user', 'budget'],
       where: { id: serviceId },
     });
   }
 
   async getServiceByBudgetId(budgetId: number): Promise<ServiceEntity | null> {
     return await this.serviceRepository.findOne({
-      relations: [
-        'client',
-        'agent',
-        'priority',
-        'address',
-        'creation_user',
-        'budget',
-      ],
+      relations: ['client', 'agent', 'address', 'creation_user', 'budget'],
       where: { id_budget: budgetId },
     });
   }
