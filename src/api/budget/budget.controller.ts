@@ -2,7 +2,7 @@ import { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Post, R
 import { BudgetService } from './budget.service';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '../auth/auth.guard';
-import { BudgetEntity } from 'src/entities/budget.entity';
+import { BudgetEntity } from '../../entities/budget.entity';
 import { createBudgetDto, updateBudgetDto } from './budget.type';
 
 @UseGuards(AuthGuard)

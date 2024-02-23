@@ -3,7 +3,7 @@ import { UserService } from '../user/user.service';
 import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
-import { UserEntity } from 'src/entities/user.entity';
+import { UserEntity } from '../../entities/user.entity';
 import { UserDto } from '../user/user.type';
 import { AuthResponse, AuthTokenResult, PayloadToken } from './auth.type';
 import { decode } from 'jsonwebtoken';
@@ -15,10 +15,7 @@ export class AuthService {
     private readonly configService: ConfigService,
   ) {}
 
-  public async validateUser(
-    username: string,
-    password: string,
-  ): Promise<UserEntity | null> {
+  public async validateUser(username: string, password: string): Promise<UserEntity | null> {
     const userByUsername = await this.userService.getUserByUsername(username);
 
     if (userByUsername == null || userByUsername == undefined) {
@@ -33,15 +30,7 @@ export class AuthService {
     return null;
   }
 
-  public signJWT({
-    payload,
-    secret,
-    expires,
-  }: {
-    payload: jwt.JwtPayload;
-    secret: string;
-    expires: number | string;
-  }): string {
+  public signJWT({ payload, secret, expires }: { payload: jwt.JwtPayload; secret: string; expires: number | string }): string {
     return jwt.sign(payload, secret, { expiresIn: expires });
   }
 

@@ -2,7 +2,7 @@ import { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Post, R
 import { RoadTypeService } from './road_type.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { RoadTypeEntity } from 'src/entities/road_type.entity';
+import { RoadTypeEntity } from '../../entities/road_type.entity';
 import { createRoadTypeDto } from './road_type.type';
 
 @UseGuards(AuthGuard)

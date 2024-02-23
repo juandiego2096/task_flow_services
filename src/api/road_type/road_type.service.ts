@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
-import { RoadTypeEntity } from 'src/entities/road_type.entity';
+import { RoadTypeEntity } from '../../entities/road_type.entity';
 import { Repository } from 'typeorm';
 import { createRoadTypeDto } from './road_type.type';
 
@@ -29,9 +29,7 @@ export class RoadTypeService {
     });
   }
 
-  async getRoadTypeByName(
-    roadTypeName: string,
-  ): Promise<RoadTypeEntity | null> {
+  async getRoadTypeByName(roadTypeName: string): Promise<RoadTypeEntity | null> {
     return await this.roadTypeRepository.findOne({
       where: { name: roadTypeName },
     });

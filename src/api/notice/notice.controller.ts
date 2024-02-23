@@ -2,7 +2,7 @@ import { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Post, R
 import { NoticeService } from './notice.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { NoticeEntity } from 'src/entities/notice.entity';
+import { NoticeEntity } from '../../entities/notice.entity';
 import { createNoticeDto, updateNoticeDto } from './notice.type';
 
 @UseGuards(AuthGuard)

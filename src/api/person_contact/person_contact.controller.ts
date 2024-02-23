@@ -2,7 +2,7 @@ import { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Post, R
 import { PersonContactService } from './person_contact.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { PersonContactEntity } from 'src/entities/person_contact.entity';
+import { PersonContactEntity } from '../../entities/person_contact.entity';
 import { createPersonContactDto } from './person_contact.type';
 
 @UseGuards(AuthGuard)

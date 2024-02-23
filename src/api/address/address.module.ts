@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AddressService } from './address.service';
 import { AddressController } from './address.controller';
-import { AddressEntity } from 'src/entities/address.entity';
+import { AddressEntity } from '../../entities/address.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({

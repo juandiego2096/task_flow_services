@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserCategoryEntity } from 'src/entities/user_category.entity';
+import { UserCategoryEntity } from '../../entities/user_category.entity';
 import { Repository } from 'typeorm';
 import { createUserCategoryDto } from './user_category.type';
 

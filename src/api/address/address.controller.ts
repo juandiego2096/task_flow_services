@@ -2,7 +2,7 @@ import { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Post, R
 import { AddressService } from './address.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { AddressEntity } from 'src/entities/address.entity';
+import { AddressEntity } from '../../entities/address.entity';
 import { createAddressDto } from './address.type';
 
 @UseGuards(AuthGuard)

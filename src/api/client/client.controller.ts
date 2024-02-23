@@ -2,7 +2,7 @@ import { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Post, R
 import { ClientService } from './client.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { ClientEntity } from 'src/entities/client.entity';
+import { ClientEntity } from '../../entities/client.entity';
 import { createClientDto } from './client.type';
 
 @UseGuards(AuthGuard)

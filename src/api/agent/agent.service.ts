@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
-import { AgentEntity } from 'src/entities/agent.entity';
+import { AgentEntity } from '../../entities/agent.entity';
 import { Repository } from 'typeorm';
 import { createAgentDto } from './agent.type';
 

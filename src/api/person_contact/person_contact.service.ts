@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { PersonContactEntity } from 'src/entities/person_contact.entity';
+import { PersonContactEntity } from '../../entities/person_contact.entity';
 import { createPersonContactDto } from './person_contact.type';
 import { Repository } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
@@ -13,9 +13,7 @@ export class PersonContactService {
     private readonly configService: ConfigService,
   ) {}
 
-  async createPersonContact(
-    personContact: createPersonContactDto,
-  ): Promise<PersonContactEntity> {
+  async createPersonContact(personContact: createPersonContactDto): Promise<PersonContactEntity> {
     return this.personContactRepository.save({
       name: personContact.name,
       phone: personContact.phone,
@@ -27,9 +25,7 @@ export class PersonContactService {
     return this.personContactRepository.find();
   }
 
-  async getPersonContactById(
-    personContactId: number,
-  ): Promise<PersonContactEntity | null> {
+  async getPersonContactById(personContactId: number): Promise<PersonContactEntity | null> {
     return await this.personContactRepository.findOne({
       where: { id: personContactId },
     });

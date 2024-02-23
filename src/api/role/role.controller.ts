@@ -2,7 +2,7 @@ import { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Post, R
 import { RoleService } from './role.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { RoleEntity } from 'src/entities/role.entity';
+import { RoleEntity } from '../../entities/role.entity';
 import { createRoleDto } from './role.type';
 
 @UseGuards(AuthGuard)

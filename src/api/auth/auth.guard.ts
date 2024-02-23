@@ -1,9 +1,4 @@
-import {
-  CanActivate,
-  ExecutionContext,
-  Injectable,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
 import { decode } from 'jsonwebtoken';
 import { IUseToken, AuthTokenResult } from './auth.type';
 import { UserService } from '../user/user.service';
@@ -15,10 +10,7 @@ export class AuthGuard implements CanActivate {
   async canActivate(context: ExecutionContext) {
     const request = context.switchToHttp().getRequest();
     const authToken = request.headers['authorization'];
-    if (!authToken)
-      throw new UnauthorizedException(
-        'token in "authorization" header is not provided',
-      );
+    if (!authToken) throw new UnauthorizedException('token in "authorization" header is not provided');
 
     const decodedAuthToken = decode(authToken) as AuthTokenResult;
     if (!decodedAuthToken || typeof decodedAuthToken === 'string') {

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
-import { NoticeEntity } from 'src/entities/notice.entity';
+import { NoticeEntity } from '../../entities/notice.entity';
 import { Repository } from 'typeorm';
 import { createNoticeDto } from './notice.type';
 

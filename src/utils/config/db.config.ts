@@ -2,9 +2,7 @@ import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { join } from 'path';
 
-export default function ofConfig(
-  configService: ConfigService,
-): TypeOrmModuleOptions {
+export default (configService: ConfigService): TypeOrmModuleOptions => {
   return {
     type: 'postgres',
     host: configService.get<string>('POSTGRES_HOST', 'localhost'),
@@ -18,4 +16,4 @@ export default function ofConfig(
     synchronize: false,
     ssl: configService.get<boolean>('POSTGRES_SSL', false) === true,
   };
-}
+};

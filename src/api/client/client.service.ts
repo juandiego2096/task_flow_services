@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ClientEntity } from 'src/entities/client.entity';
+import { ClientEntity } from '../../entities/client.entity';
 import { Repository } from 'typeorm';
 import { createClientDto } from './client.type';
 import { ConfigService } from '@nestjs/config';

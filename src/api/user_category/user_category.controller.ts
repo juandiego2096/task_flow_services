@@ -2,7 +2,7 @@ import { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Post, R
 import { UserCategoryService } from './user_category.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { UserCategoryEntity } from 'src/entities/user_category.entity';
+import { UserCategoryEntity } from '../../entities/user_category.entity';
 import { createUserCategoryDto } from './user_category.type';
 
 @UseGuards(AuthGuard)

@@ -2,7 +2,7 @@ import { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Post, R
 import { ServiceService } from './service.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { ServiceEntity } from 'src/entities/service.entity';
+import { ServiceEntity } from '../../entities/service.entity';
 import { createServiceDto, updateServiceDto } from './service.type';
 
 @UseGuards(AuthGuard)

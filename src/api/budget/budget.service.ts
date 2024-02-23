@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BudgetEntity } from 'src/entities/budget.entity';
+import { BudgetEntity } from '../../entities/budget.entity';
 import { Repository } from 'typeorm';
 import { createBudgetDto } from './budget.type';
 
